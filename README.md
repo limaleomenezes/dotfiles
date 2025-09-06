@@ -1,4 +1,7 @@
-# Arch Install
+
+# limaleomenezes's DOTFILES
+
+## Arch Install
 
 Follow ArchWiki Installation Guide.
 
@@ -12,7 +15,7 @@ Actions recommendaded:
 - When editing `visudo` add `Defaults !tty_tickets`.
 - Clone [dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async).
 
-# ARCH-CHROOT
+## ARCH-CHROOT
 
 ```
 man-db man-pages
@@ -21,7 +24,7 @@ tmux
 vim
 ```
 
-# On Reboot
+## On Reboot
 
 Follow [David T. Sadler](https://davidtsadler.com/) tutorial.
 
@@ -55,9 +58,9 @@ setxkbmap br -option caps:escape_shifted_capslock
 localectl set-x11-keymap br "" "" caps:escape_shifted_capslock
 ```
 
-# My Environment Overview
+## My Environment Overview
 
-## System packages
+### System packages
 
 ```
 sudo pacman -S \
@@ -89,7 +92,7 @@ sudo pacman -S \
 	xorg-xprop
 ```
 
-## Files and folders
+### Files and folders
 
 ```
 ~/.local/bin/
@@ -110,7 +113,7 @@ sudo pacman -S \
 ~/.xinitrc
 ```
 
-## Usage recommendations
+### Usage recommendations
 
 - Use `firefox` as a clean browser and `chromium` as dirty one.
 - Use `vim`.
@@ -147,7 +150,7 @@ sudo pkgfile -u
 
 - [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
 
-# References
+## References
 
 - [Luke Smith](https://lukesmith.xyz/)
 - [davidtsadler.com](https://davidtsadler.com/)
