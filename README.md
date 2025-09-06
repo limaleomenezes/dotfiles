@@ -63,33 +63,37 @@ localectl set-x11-keymap br "" "" caps:escape_shifted_capslock
 ### System packages
 
 ```
-sudo pacman -S \
-	chromium \
-	entr \
-	firefox \
-	gvim \
-	htop \
-	lxappearance-gtk3 pop-gtk-theme pop-icon-theme deepin-icon-theme \
-	pass \
-	pcmanfm-gtk3 xarchiver p7zip unrar unzip zip gvfs gvfs-mtp
+chromium
+firefox
+gvim
+htop
+lxappearance-gtk3 pop-gtk-theme pop-icon-theme deepin-icon-theme
+mpv
+pass
+pcmanfm-gtk3 xarchiver p7zip unrar unzip zip gvfs gvfs-
+zathura zathura-pdf-mupdf tesseract-data-eng tesseract-data-por tesseract-data-jpn
 
-sudo pacman -S \
-	alsa-utils \
-	dunst libnotify \
-	brightnessctl \
-	picom \
-	pipewire pipewire-audio pipewire-jack pipewire-alsa pipewire-pulse wireplumber \
-	redshift \
-	polkit-gnome \
-	sxhkd \
-	wireguard-tools systemd-resolvconf
+alsa-utils
+brightnessctl
+dunst libnotify
+picom
+pipewire pipewire-audio pipewire-jack pipewire-alsa pipewire-pulse wireplumber
+polkit-gnome
+redshift
+sxhkd
+wireguard-tools systemd-resolvco
 
-sudo pacman -S \
-	bash-completion \
-	pkgfile \
-	xclip xsel \
-	xdotool \
-	xorg-xprop
+bash-completion
+entr
+fzf
+pkgfile
+ripgrep
+the_silver_searcher
+xclip xsel
+xdotool
+xorg-xinput
+xorg-xprop
+yt-dlp
 ```
 
 ### Files and folders
@@ -103,9 +107,11 @@ sudo pacman -S \
 ~/.bash_logout
 ~/.bash_profile
 ~/.bashrc
+~/.config/mpv/mpv.conf
 ~/.config/picom/picom.conf
 ~/.config/redshift/redshift.conf
 ~/.config/sxhkd/sxhkdrc
+~/.config/zathura/zathurarc
 ~/.gitconfig
 ~/.gnupg/gpg-agent.conf
 ~/.tmux.conf
@@ -123,32 +129,51 @@ sudo pacman -S \
 Enable systemd services and update things:
 
 ```
+# Enable Touchpad tapping
+# --- Get device ID:
+xinput list
 #
-# Enable pipewire service
-#
+# --- Enable property:
+xinput set-prop <device_id> "libinput Tapping Enabled" 1
+
+
+# --- Enable pipewire service
 systemctl --user enable pipewire
 systemctl --user enable pipewire-pulse
 systemctl enable systemd-resolved
 
-#
-# Update pkgfile database
-#
+# --- Update pkgfile database
 sudo pkgfile -u
 
 #
 # Add VPN server config /etc/wireguard/
 #
 
-#
-# Change permission of GnuPG homedir:
-# chmod 600 ~/.gnupg/*
-# chmod 700 ~/.gnupg
-#
+# --- Change permission of GnuPG homedir:
+chmod 600 ~/.gnupg/*
+chmod 700 ~/.gnupg
+
+# --- XDG File Manager
+xdg-mime default pcmanfm.desktop inode
+
+# --- XDG Text Editor
+xdg-mime default vim.desktop text
+
+# --- XDG Media Player
+xdg-mime default mpv.desktop audio
+xdg-mime default mpv.desktop video
+
+# --- XDG PDF reader
+xdg-mime default org.pwmt.zathura.desktop application/pdf
 ```
 
 ### Tmux
 
 - [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
+
+### Vim
+
+- [vim-plug](https://github.com/junegunn/vim-plug)
 
 ## References
 
@@ -175,4 +200,8 @@ sudo pkgfile -u
 - [ArchWiki: X resources](https://wiki.archlinux.org/title/X_resources)
 - [ArchWiki: WireGuard](https://wiki.archlinux.org/title/WireGuard)
 - [ArchWiki: pass](https://wiki.archlinux.org/title/Pass)
+- [ArchWiki: mpv](https://wiki.archlinux.org/title/Mpv)
+- [ArchWiki: yt-dlp](https://wiki.archlinux.org/title/Yt-dlp)
+- [ArchWiki: zathura](https://wiki.archlinux.org/title/Zathura)
+- [ArchWiki: MuPDF](https://wiki.archlinux.org/title/MuPDF)
 
