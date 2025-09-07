@@ -1,5 +1,7 @@
 # My DOTFILES
 
+- [Mastering ´stow´ on Linux: A Comprehensive Guide](https://linuxvox.com/blog/stow-linux-nixcraftcom/)
+
 ## Arch Install
 
 Follow ArchWiki Installation Guide.
@@ -85,6 +87,7 @@ gvim
 htop
 lxappearance-gtk3 pop-gtk-theme pop-icon-theme deepin-icon-theme
 mpv
+nnn
 nsxiv xwallpaper
 pass
 pcmanfm-gtk3 xarchiver p7zip unrar unzip zip gvfs gvfs-
@@ -103,6 +106,7 @@ wireguard-tools systemd-resolvco
 bash-completion
 entr
 fzf
+maim
 pkgfile
 ripgrep
 stow
@@ -112,29 +116,6 @@ xdotool
 xorg-xinput
 xorg-xprop
 yt-dlp
-```
-
-### Files and folders
-
-```
-~/.local/bin/
-~/.local/src/
-~/.password-store/
-
-~/.Xresources
-~/.bash_logout
-~/.bash_profile
-~/.bashrc
-~/.config/mpv/mpv.conf
-~/.config/picom/picom.conf
-~/.config/redshift/redshift.conf
-~/.config/sxhkd/sxhkdrc
-~/.config/zathura/zathurarc
-~/.gitconfig
-~/.gnupg/gpg-agent.conf
-~/.tmux.conf
-~/.vimrc
-~/.xinitrc
 ```
 
 ### Usage recommendations
@@ -157,27 +138,14 @@ systemctl enable systemd-resolved
 # --- Update pkgfile database
 sudo pkgfile -u
 
-# Add VPN server config /etc/wireguard/
-
 # --- Change permission of GnuPG homedir:
 chmod 600 ~/.gnupg/*
 chmod 700 ~/.gnupg
 
-# --- XDG File Manager
-xdg-mime default pcmanfm.desktop inode
+# Add VPN server config /etc/wireguard/
 
-# --- XDG Image Viewer
-xdg-mime default nsxiv.desktop image
-
-# --- XDG Media Player
-xdg-mime default mpv.desktop audio
-xdg-mime default mpv.desktop video
-
-# --- XDG PDF reader
-xdg-mime default org.pwmt.zathura.desktop application/pdf
-
-# --- XDG Text Editor
-xdg-mime default vim.desktop text
+# Update MIME database
+update-mime-database ~/.local/share/mime
 ```
 
 ## References
@@ -215,4 +183,8 @@ Articles:
 - [ArchWiki: MuPDF](https://wiki.archlinux.org/title/MuPDF)
 - [ArchWiki: sxiv](https://wiki.archlinux.org/title/Sxiv)
 - [ArchWiki: st](https://wiki.archlinux.org/title/St)
+- [ArchWiki: XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications)
+- [ArchWiki: XDG Base Directory](https://wiki.archlinux.org/title/XDG_Base_Directory)
+- [ArchWiki: Environment variables](https://wiki.archlinux.org/title/Environment_variables)
+- [ArchWiki: xbindkeys](https://wiki.archlinux.org/title/Xbindkeys)
 
