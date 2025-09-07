@@ -1,0 +1,72 @@
+call plug#begin()
+
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+let mapleader = " "
+
+set mouse=a
+set hidden
+set autoread
+
+set number
+set splitbelow
+set splitright
+
+set autoindent
+set smartindent
+
+set smarttab
+" set softtabstop=4
+" set shiftwidth=4
+
+set hlsearch
+set ignorecase
+set smartcase
+
+set wildignorecase
+set wildmenu
+set wildmode=longest:full,full
+
+set nobackup
+set nowritebackup
+set noswapfile
+
+function! LeaderEsc()
+	" To detect the file type again
+	filetype detect
+	" To check changes by outside Vim
+	checktime
+	" To clear the last used search pattern
+	let @/ = ""
+endfunction
+
+nnoremap <silent> <Leader><Esc> <Cmd>call LeaderEsc()<CR><Cmd>source $MYVIMRC<CR>
+
+nnoremap <silent> <Leader>bd <Cmd>bdelete %<CR>
+nnoremap <silent> <Leader>bw <Cmd>bwipeout %<CR>
+nnoremap <silent> <Leader>bn <Cmd>bnext<CR>
+nnoremap <silent> <Leader>bp <Cmd>bprevious<CR>
+
+" Copy system clipboard in visual mode
+xnoremap <Leader>y "+y
+
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+" fzf.vim
+nnoremap <Leader>ff <Cmd>Files<CR>
+nnoremap <Leader>fF <Cmd>Files $HOME<CR>
+nnoremap <Leader>bb <Cmd>Buffers<CR>
+nnoremap <Leader>bl <Cmd>BLines<CR>
+nnoremap <Leader>bL <Cmd>Lines<CR>
+nnoremap <Leader>fh <Cmd>Helptags<CR>
+
