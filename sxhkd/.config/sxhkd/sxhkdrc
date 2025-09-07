@@ -1,0 +1,42 @@
+#
+# Launch
+#
+super + a
+	sh_dmenu
+
+super + s
+	st -e tmux new-session -As Main
+
+super + q
+	passmenu
+
+super + w
+	firefox
+
+super + alt + w
+	chromium
+
+super + e
+	pcmanfm
+
+#
+# Backlight
+#
+XF86MonBrightnessUp
+	sh_brightness up
+
+XF86MonBrightnessDown
+	sh_brightness down
+
+#
+# Audio
+#
+XF86AudioRaiseVolume
+	sh_volume raise
+
+XF86AudioLowerVolume
+	sh_volume lower
+
+XF86AudioMute
+	sh_volume mute
+
