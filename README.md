@@ -13,7 +13,7 @@ Actions recommendaded:
 - When creating a user add to group `video`.
 - When editing `visudo` add `Defaults !tty_tickets`.
 
-## ARCH-CHROOT
+## arch-chroot
 
 ```
 man-db man-pages
