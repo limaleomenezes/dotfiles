@@ -1,0 +1,30 @@
+#!/bin/sh
+
+[ ! -x '/usr/bin/maim' ] && echo 'ERROR' && exit
+
+menu_options='Full
+Selection
+Window
+Clipboard'
+img_path="$HOME/Images/screen-$(date '+%s').png"
+
+case "$1" in
+	'menu')
+		menu_sel=$(printf '%s' "$menu_options" | dmenu -i | tr '[:upper:]' '[:lower:]')
+		[ -z "$menu_sel" ] && exit
+		"$0" "$menu_sel"
+		;;
+	'full')
+		maim "$img_path"
+		;;
+	'selection')
+		maim --select "$img_path"
+		;;
+	'window')
+		maim --window $(xdotool getactivewindow) "$img_path"
+		;;
+	'clipboard')
+		maim -s | xclip -selection clipboard -t image/png -i
+		;;
+esac
+

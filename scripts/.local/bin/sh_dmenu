@@ -68,8 +68,8 @@ dunstify -u low -h string:x-dunst-stack-tag:User 'XPROP' 'Saved on ~/XPROP.log'
 # END
 "
 
-cmd_headers=$(printf "%s" "$cmd_blocks" | grep '^#-' | sed 's/^#-//')
-cmd_header="#-$(printf "%s\n" "$cmd_headers" | dmenu -i)"
+cmd_headers=$(printf '%s' "$cmd_blocks" | grep '^#-' | sed 's/^#-//')
+cmd_header="#-$(printf '%s\n' "$cmd_headers" | dmenu -i)"
 
 printf "%s\n" "$cmd_blocks" | awk -v header="$cmd_header" '
 $0 == header { in_block = 1; next }
