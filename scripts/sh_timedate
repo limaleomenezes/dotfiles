@@ -1,0 +1,4 @@
+#!/bin/sh
+
+date '+%a %b %e :: %R %Z' || printf 'ERROR'
+

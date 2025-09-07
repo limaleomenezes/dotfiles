@@ -1,0 +1,25 @@
+#!/bin/sh
+
+[ ! -x '/usr/bin/dunstctl' ] && echo 'ERROR' && exit
+
+case "$1" in
+	'close')
+		dunstctl close-all
+		kill -35 $(pidof dwmblocks)
+		;;
+	'show')
+		dunstctl history-pop
+		kill -35 $(pidof dwmblocks)
+		;;
+	'toggle')
+		dunstctl set-paused toggle
+		kill -35 $(pidof dwmblocks)
+		;;
+esac
+
+is_paused=$(dunstctl is-paused)
+
+[ "$is_paused" != 'true' ] && exit
+
+printf '%s\n' 'DO NOT DISTURB'
+

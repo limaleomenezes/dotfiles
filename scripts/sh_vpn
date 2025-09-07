@@ -1,0 +1,28 @@
+#!/bin/sh
+
+[ ! -x '/usr/bin/wg' ] && echo 'ERROR' && exit
+
+SERVER='proton'
+is_running=$(grep -c "$SERVER" /proc/net/dev)
+
+case "$1" in
+	'up')
+		[ "$is_running" -eq 1 ] && exit
+		pkexec wg-quick up "$SERVER" >/dev/null 2>&1 && {
+			printf '[WIREGUARD UP] [%s]\n' "$(date)" >> ~/.dwm.log
+			kill -36 $(pidof dwmblocks)
+		}
+		;;
+	'down')
+		[ "$is_running" -eq 0 ] && exit
+		pkexec wg-quick down "$SERVER" >/dev/null 2>&1 && {
+			printf '[WIREGUARD DOWN] [%s]\n' "$(date)" >> ~/.dwm.log
+			kill -36 $(pidof dwmblocks)
+		}
+		;;
+esac
+
+[ "$is_running" -ne 1 ] && exit
+
+printf 'VPN\n'
+

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+[ ! -x '/usr/bin/brightnessctl' ] && echo 'ERROR' && exit
+
+case "$1" in
+	'up')
+		brightnessctl s 10%+
+		kill -37 $(pidof dwmblocks)
+		;;
+	'down')
+		brightnessctl s 10%-
+		kill -37 $(pidof dwmblocks)
+		;;
+esac
+
+bri_cur=$(brightnessctl g)
+bri_max=$(brightnessctl m)
+bri_per=$((bri_cur * 100 / bri_max))
+output='****'
+
+[ -n "$bri_per" ] && output="$bri_per%"
+
+printf 'BRI:%4s\n' "$output"
+

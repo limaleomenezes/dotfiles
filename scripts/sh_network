@@ -1,0 +1,14 @@
+#!/bin/sh
+
+net_link=$(awk '/wlo1/ { sub(/\./, "", $3); print $3 }' /proc/net/wireless)
+output='____'
+
+if [ -n "$net_link" ]; then
+	[ "$net_link" -lt 18 ] && output='*___'
+	[ "$net_link" -lt 36 ] && output='**__'
+	[ "$net_link" -le 54 ] && output='***_'
+	[ "$net_link" -gt 54 ] && output='****'
+fi
+
+printf 'NET:%4s\n' "$output"
+

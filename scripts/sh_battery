@@ -1,0 +1,15 @@
+#!/bin/sh
+
+bat_cap=$(cat /sys/class/power_supply/BAT0/capacity)
+bat_status=$(cat /sys/class/power_supply/BAT0/status)
+output='****'
+
+if [ -n "$bat_cap" ]; then
+	output="+$bat_cap%"
+
+	[ "$bat_status" = 'Discharging' ] && output="-$bat_cap%"
+	[ "$bat_cap" -eq 100 ] && output='FULL'
+fi
+
+printf 'BAT:%4s\n' "$output"
+

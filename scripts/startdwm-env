@@ -1,0 +1,59 @@
+#!/bin/sh
+
+services='dunst
+dwmblocks
+picom
+redshift
+sxhkd'
+programs='chromium
+firefox'
+
+case "$1" in
+	'init')
+		printf '\n[START DWM-ENV]\n' >> ~/.dwm.log
+		printf '%s\n' "$services" | while IFS= read -r service; do
+			"$service" 2>> ~/.dwm.log &
+			printf '[START SERVICE] [%s]\n' "$service" >> ~/.dwm.log
+		done
+		printf '%s\n' "$programs" | while IFS= read -r program; do
+			"$program" >/dev/null 2>&1 &
+			printf '[START PROGRAM] [%s]\n' "$program" >> ~/.dwm.log
+		done
+		;;
+	'end')
+		printf '\n[END DWM-ENV] [%s]\n' "$(date)" >> ~/.dwm.log
+		printf '%s\n' "$services" | while IFS= read -r service; do
+			pkill -9 "$service" >/dev/null
+			printf '[END SERVICE] [%s]\n' "$service" >> ~/.dwm.log
+		done
+		printf '%s\n' "$programs" | while IFS= read -r program; do
+			pkill -SIGTERM "$program" >/dev/null
+			printf '[END PROGRAM] [%s]\n' "$program" >> ~/.dwm.log
+		done
+		mv -f ~/.dwm.log ~/.dwm.log.old
+		;;
+	'reload')
+		printf '\n[RELOAD DWM-ENV] [%s]\n' "$(date)" >> ~/.dwm.log
+		printf '%s\n' "$services" | while IFS= read -r service; do
+			pkill -9 "$service" >/dev/null
+			printf '[END SERVICE] [%s]\n' "$service" >> ~/.dwm.log
+		done
+		printf '%s\n' "$programs" | while IFS= read -r program; do
+			pkill -SIGTERM "$program" >/dev/null
+			printf '[END PROGRAM] [%s]\n' "$program" >> ~/.dwm.log
+		done
+		printf '%s\n' "$services" | while IFS= read -r service; do
+			if [ ! "$(pgrep $service >/dev/null)" ]; then
+				"$service" 2>> ~/.dwm.log & disown
+				printf '[START SERVICE] [%s]\n' "$service" >> ~/.dwm.log
+			fi
+		done
+		printf '%s\n' "$programs" | while IFS= read -r program; do
+			if [ ! "$(pgrep $program >/dev/null)" ]; then
+				"$program" >/dev/null 2>&1 & disown
+				printf '[START PROGRAM] [%s]\n' "$program" >> ~/.dwm.log
+			fi
+		done
+		;;
+esac
+

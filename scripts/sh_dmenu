@@ -1,0 +1,79 @@
+#!/bin/sh
+
+cmd_blocks="
+#-DWM end
+startdwm-env end
+pkill dwm
+# END
+
+#-DWM-ENV reload
+startdwm-env reload
+# END
+
+#-SYSTEM poweroff
+startdwm-env end
+systemctl poweroff
+# END
+
+#-SYSTEM reboot
+startdwm-env end
+systemctl reboot
+# END
+
+#-SYSTEM sleep
+systemctl sleep
+# END
+
+#-DUNST close all
+sh_do-not-disturb close
+# END
+
+#-DUNST show history
+sh_do-not-disturb show
+# END
+
+#-DUNST toggle pause
+sh_do-not-disturb toggle
+# END
+
+#-WG up
+sh_vpn up
+# END
+
+#-WG down
+sh_vpn down
+# END
+
+#-REDSHIFT toggle pause
+pkill -USR1 '^redshift$'
+# END
+
+#-GNUPG reload
+gpg-connect-agent reloadagent /bye
+# END
+
+#-SXHKD reload
+pkill -USR1 -x sxhkd
+# END
+
+#-XRESOURCES reload
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+# END
+
+#-XPROP
+xprop | awk ' \
+/^WM_CLASS/{sub(/.* =/, \"instance:\"); sub(/,/, \"\nclass:\"); print} \
+/^WM_NAME/{sub(/.* =/, \"title:\"); print}' >> ~/XPROP.log
+dunstify -u low -h string:x-dunst-stack-tag:User 'XPROP' 'Saved on ~/XPROP.log'
+# END
+"
+
+cmd_headers=$(printf "%s" "$cmd_blocks" | grep '^#-' | sed 's/^#-//')
+cmd_header="#-$(printf "%s\n" "$cmd_headers" | dmenu -i)"
+
+printf "%s\n" "$cmd_blocks" | awk -v header="$cmd_header" '
+$0 == header { in_block = 1; next }
+in_block && $0 == "# END" { exit }
+in_block { system($0) }
+'
+

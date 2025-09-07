@@ -1,0 +1,28 @@
+#!/bin/sh
+
+[ ! -x '/usr/bin/amixer' ] && echo 'ERROR' && exit
+
+case "$1" in
+	'raise')
+		amixer set Master 5%+
+		kill -38 $(pidof dwmblocks)
+		;;
+	'lower')
+		amixer set Master 5%-
+		kill -38 $(pidof dwmblocks)
+		;;
+	'mute')
+		amixer set Master toggle
+		kill -38 $(pidof dwmblocks)
+		;;
+esac
+
+mix_status=$(amixer sget Master | awk '/Front Left:/ { print $6 }')
+mix_FL=$(amixer sget Master | awk '/Front Left:/ { print $5 }' | tr -d '[]%')
+output='****'
+
+[ "$mix_status" = '[on]' ] && output="$mix_FL%"
+[ "$mix_status" = '[off]' ] && output="MUTE"
+
+printf 'VOL:%4s\n' "$output"
+
