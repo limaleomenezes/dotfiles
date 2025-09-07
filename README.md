@@ -13,7 +13,6 @@ Actions recommendaded:
 
 - When creating a user add to group `video`.
 - When editing `visudo` add `Defaults !tty_tickets`.
-- Clone [dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async).
 
 ## ARCH-CHROOT
 
@@ -26,41 +25,59 @@ vim
 
 ## On Reboot
 
-Follow [David T. Sadler](https://davidtsadler.com/) tutorial.
+Follow this articles to do not forget a bit while building dmenu, st and dwm.
 
-- [Installing ST, DMENU and DWM in Arch Linux](https://davidtsadler.com/posts/arch/2020-08-17/installing-st-dmenu-dwm-in-arch-linux/)
-- [dwm tutorial](https://dwm.suckless.org/tutorial/)
+- [David T. Sadler's tutorial](https://davidtsadler.com/posts/arch/2020-08-17/installing-st-dmenu-dwm-in-arch-linux/)
+- [suckless.org's tutorial](https://dwm.suckless.org/tutorial/)
 
-Packages that I install and things that I do:
+Additionaly, install a status monitor. I use [dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async). To get an overview: [status monitor](https://dwm.suckless.org/status_monitor/).
+
+My dwm uses the patches below and apply a few sensible preferences. My dwm patch modifies `config.h`, so run `make` before patching at first time by yourself. To know how to [Hacking](https://suckless.org/hacking/).
+
+- [push up/down](https://dwm.suckless.org/patches/push/)
+- [fullgaps](https://dwm.suckless.org/patches/fullgaps/)
+- [attachaside](https://dwm.suckless.org/patches/attachaside/)
+- [xrdb](https://dwm.suckless.org/patches/xrdb/)
+
+My dwmblocks shows the stuff below.
+
+- DO NOT DISTRUB
+- VPN
+- TIMEDATE
+- BRIGHTNESS
+- VOLUME
+- NETWORK
+- BATTERY
+- MEMORY
+- LOADAVG
+
+Basic packages and command:
 
 ```
-#
-# X LIB
-#
+# --- X LIB
 sudo pacman -S \
 	libx11 libxft libxinerama \
 	xorg-server xorg-xinit \
 	xterm
 
-#
-# FONTS
-#
+# --- FONTS
 sudo pacman -S  \
 	terminus-font \
 	ttf-inconsolata \
 	ttf-liberation \
 	ttf-linux-libertine
 
-#
-# X KEYMAP LAYOUT
-#
+# --- X KEYMAP LAYOUT
 setxkbmap br -option caps:escape_shifted_capslock
 localectl set-x11-keymap br "" "" caps:escape_shifted_capslock
+
+# --- Enable Touchpad tapping
+xinput set-prop "PNP0C50:0b 093A:0255 Touchpad" "libinput Tapping Enabled" 1
 ```
 
-## My Environment Overview
+## The Environment
 
-### System packages
+### Packages
 
 ```
 chromium
@@ -69,6 +86,7 @@ gvim
 htop
 lxappearance-gtk3 pop-gtk-theme pop-icon-theme deepin-icon-theme
 mpv
+nsxiv xwallpaper
 pass
 pcmanfm-gtk3 xarchiver p7zip unrar unzip zip gvfs gvfs-
 zathura zathura-pdf-mupdf tesseract-data-eng tesseract-data-por tesseract-data-jpn
@@ -125,18 +143,12 @@ yt-dlp
 - Use `vim`.
 - Use `nmtui` to connect to Wi-Fi networks.
 - Use `alsamixer` if you need control mixers.
+- Install [vim-plug](https://github.com/junegunn/vim-plug).
+- Install [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm).
 
-Enable systemd services and update things:
+Complete the environment setup:
 
 ```
-# Enable Touchpad tapping
-# --- Get device ID:
-xinput list
-#
-# --- Enable property:
-xinput set-prop <device_id> "libinput Tapping Enabled" 1
-
-
 # --- Enable pipewire service
 systemctl --user enable pipewire
 systemctl --user enable pipewire-pulse
@@ -145,9 +157,7 @@ systemctl enable systemd-resolved
 # --- Update pkgfile database
 sudo pkgfile -u
 
-#
 # Add VPN server config /etc/wireguard/
-#
 
 # --- Change permission of GnuPG homedir:
 chmod 600 ~/.gnupg/*
@@ -156,8 +166,8 @@ chmod 700 ~/.gnupg
 # --- XDG File Manager
 xdg-mime default pcmanfm.desktop inode
 
-# --- XDG Text Editor
-xdg-mime default vim.desktop text
+# --- XDG Image Viewer
+xdg-mime default nsxiv.desktop image
 
 # --- XDG Media Player
 xdg-mime default mpv.desktop audio
@@ -165,25 +175,24 @@ xdg-mime default mpv.desktop video
 
 # --- XDG PDF reader
 xdg-mime default org.pwmt.zathura.desktop application/pdf
+
+# --- XDG Text Editor
+xdg-mime default vim.desktop text
 ```
 
-### Tmux
-
-- [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
-
-### Vim
-
-- [vim-plug](https://github.com/junegunn/vim-plug)
-
 ## References
+
+People:
 
 - [Luke Smith](https://lukesmith.xyz/)
 - [davidtsadler.com](https://davidtsadler.com/)
 - [juliu.is](https://juliu.is/)
 - [steinbaugh.com](https://steinbaugh.com/)
 
+Articles:
 
 - [ArchWiki; Xorg/Keyboard configuration](https://wiki.archlinux.org/title/Xorg/Keyboard_configuration)
+- [ArchWiki: xinput](https://wiki.archlinux.org/title/Xinput)
 - [ArchWiki: dwm](https://wiki.archlinux.org/title/Dwm)
 - [ArchWiki: xinit](https://wiki.archlinux.org/title/Xinit)
 - [ArchWiki: Redshift](https://wiki.archlinux.org/title/Redshift)
@@ -204,4 +213,6 @@ xdg-mime default org.pwmt.zathura.desktop application/pdf
 - [ArchWiki: yt-dlp](https://wiki.archlinux.org/title/Yt-dlp)
 - [ArchWiki: zathura](https://wiki.archlinux.org/title/Zathura)
 - [ArchWiki: MuPDF](https://wiki.archlinux.org/title/MuPDF)
+- [ArchWiki: sxiv](https://wiki.archlinux.org/title/Sxiv)
+- [ArchWiki: st](https://wiki.archlinux.org/title/St)
 
