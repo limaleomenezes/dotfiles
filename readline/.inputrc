@@ -1,0 +1,14 @@
+# Completion
+set show-all-if-ambiguous on
+set completion-ignore-case on
+
+# Colorized completion
+set colored-stats On
+set visible-stats On
+set mark-symlinked-directories On
+set colored-completion-prefix On
+set menu-complete-display-prefix On
+
+# Disabling control echo
+set echo-control-characters off
+
