@@ -13,6 +13,7 @@ tmux
 vim
 xdg
 xorg
+yt-dlp
 zathura'
 stow_path="$HOME/.config/git
 $HOME/.config/mpv
@@ -21,6 +22,7 @@ $HOME/.config/redshift
 $HOME/.config/sxhkd
 $HOME/.config/tmux
 $HOME/.config/vim
+$HOME/.config/yt-dlp
 $HOME/.config/zathura
 $HOME/.gnupg
 $HOME/.local/bin"
