@@ -40,3 +40,9 @@ XF86AudioLowerVolume
 XF86AudioMute
 	sh_volume mute
 
+#
+# Screen capture
+#
+Print
+	sh_screen-capture menu
+
