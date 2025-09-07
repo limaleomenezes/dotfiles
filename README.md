@@ -1,5 +1,4 @@
-
-# limaleomenezes's DOTFILES
+# My DOTFILES
 
 ## Arch Install
 
