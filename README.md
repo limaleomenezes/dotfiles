@@ -105,6 +105,7 @@ entr
 fzf
 pkgfile
 ripgrep
+stow
 the_silver_searcher
 xclip xsel
 xdotool
