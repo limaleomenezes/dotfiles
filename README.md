@@ -1,4 +1,4 @@
-# My DOTFILES
+# `limaleomenezes`'s DOTFILES
 
 - [Mastering ´stow´ on Linux: A Comprehensive Guide](https://linuxvox.com/blog/stow-linux-nixcraftcom/)
 
