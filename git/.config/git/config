@@ -1,0 +1,9 @@
+[user]
+	name = Leonardo Menezes
+	email = limaleomenezes@gmail.com
+	signingkey = limaleomenezes@gmail.com
+[core]
+	editor = vim
+	pager = less
+[init]
+	defaultBranch = main
