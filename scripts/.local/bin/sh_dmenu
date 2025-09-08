@@ -66,6 +66,11 @@ xprop | awk ' \
 /^WM_NAME/{sub(/.* =/, \"title:\"); print}' >> ~/XPROP.log
 dunstify -u low -h string:x-dunst-stack-tag:User 'XPROP' 'Saved on ~/XPROP.log'
 # END
+
+#-WTTR.IN
+curl -s wttr.in/-3.03,-60.04 >> ~/WTTR-IN.log
+dunstify -u low -h string:x-dunst-stack-tag:User 'WTTR.IN' 'Saved on ~/WTTR-IN.log'
+# END
 "
 
 cmd_headers=$(printf '%s' "$cmd_blocks" | grep '^#-' | sed 's/^#-//')
