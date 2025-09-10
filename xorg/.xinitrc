@@ -12,4 +12,3 @@ startdwm-env init
 
 printf '[START STARTDWM]\n' >> ~/.dwm.log
 exec startdwm >/dev/null 2>&1
-

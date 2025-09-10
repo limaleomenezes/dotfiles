@@ -27,4 +27,3 @@ case "$1" in
 		maim -s | xclip -selection clipboard -t image/png -i
 		;;
 esac
-

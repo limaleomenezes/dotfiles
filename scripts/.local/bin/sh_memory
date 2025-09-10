@@ -11,4 +11,3 @@ if [ -n "$mem_used" ]; then
 fi
 
 printf 'MEM:%4s\n' "$output"
-

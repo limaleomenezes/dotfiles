@@ -22,4 +22,3 @@ is_paused=$(dunstctl is-paused)
 [ "$is_paused" != 'true' ] && exit
 
 printf '%s\n' 'DO NOT DISTURB'
-

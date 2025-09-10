@@ -25,4 +25,3 @@ esac
 [ "$is_running" -ne 1 ] && exit
 
 printf 'VPN\n'
-

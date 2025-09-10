@@ -12,7 +12,7 @@ Follow ArchWiki Installation Guide.
 
 Actions recommendaded:
 
-- When creating a user add to group `video`.
+- When creating a user add to groups `video docker`.
 - When editing `visudo` add `Defaults !tty_tickets`.
 
 ## arch-chroot
@@ -104,6 +104,7 @@ sxhkd
 wireguard-tools systemd-resolvco
 
 bash-completion
+docker docker-compose
 entr
 fzf
 maim
@@ -133,7 +134,12 @@ Complete the environment setup:
 # --- Enable pipewire service
 systemctl --user enable pipewire
 systemctl --user enable pipewire-pulse
+
+# --- Enable resolved service
 systemctl enable systemd-resolved
+
+# --- Enable docker socket
+systemctl enable docker.socket
 
 # --- Update pkgfile database
 sudo pkgfile -u
@@ -187,4 +193,4 @@ Articles:
 - [ArchWiki: XDG Base Directory](https://wiki.archlinux.org/title/XDG_Base_Directory)
 - [ArchWiki: Environment variables](https://wiki.archlinux.org/title/Environment_variables)
 - [ArchWiki: xbindkeys](https://wiki.archlinux.org/title/Xbindkeys)
-
+- [ArchWiki: Docker](https://wiki.archlinux.org/title/Docker)

@@ -52,4 +52,3 @@ shopt -s autocd
 set -o noclobber
 
 PS1='[\u@\h \W]\$ '
-

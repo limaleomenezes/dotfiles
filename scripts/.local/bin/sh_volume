@@ -25,4 +25,3 @@ output='****'
 [ "$mix_status" = '[off]' ] && output="MUTE"
 
 printf 'VOL:%4s\n' "$output"
-

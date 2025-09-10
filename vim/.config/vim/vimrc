@@ -20,12 +20,17 @@ set number
 set splitbelow
 set splitright
 
-set autoindent
-set smartindent
+set colorcolumn=80
+set textwidth=72
 
+set autoindent
+set noexpandtab
+set smartindent
 set smarttab
-" set softtabstop=4
-" set shiftwidth=4
+
+set shiftwidth=8
+set softtabstop=0
+set tabstop=8
 
 set hlsearch
 set ignorecase
@@ -36,8 +41,8 @@ set wildmenu
 set wildmode=longest:full,full
 
 set nobackup
-set nowritebackup
 set noswapfile
+set nowritebackup
 
 function! LeaderEsc()
 	" To detect the file type again
@@ -49,11 +54,6 @@ function! LeaderEsc()
 endfunction
 
 nnoremap <silent> <Leader><Esc> <Cmd>call LeaderEsc()<CR><Cmd>source $MYVIMRC<CR>
-
-nnoremap <silent> <Leader>bd <Cmd>bdelete %<CR>
-nnoremap <silent> <Leader>bw <Cmd>bwipeout %<CR>
-nnoremap <silent> <Leader>bn <Cmd>bnext<CR>
-nnoremap <silent> <Leader>bp <Cmd>bprevious<CR>
 
 " Copy system clipboard in visual mode
 xnoremap <Leader>y "+y

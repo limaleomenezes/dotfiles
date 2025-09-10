@@ -11,4 +11,3 @@ set menu-complete-display-prefix On
 
 # Disabling control echo
 set echo-control-characters off
-

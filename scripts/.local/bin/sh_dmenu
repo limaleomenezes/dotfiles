@@ -81,4 +81,3 @@ $0 == header { in_block = 1; next }
 in_block && $0 == "# END" { exit }
 in_block { system($0) }
 '
-

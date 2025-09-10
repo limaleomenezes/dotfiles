@@ -21,4 +21,3 @@ output='****'
 [ -n "$bri_per" ] && output="$bri_per%"
 
 printf 'BRI:%4s\n' "$output"
-
