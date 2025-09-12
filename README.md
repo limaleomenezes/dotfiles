@@ -64,9 +64,9 @@ sudo pacman -S \
 # --- FONTS
 sudo pacman -S  \
 	terminus-font \
-	ttf-inconsolata \
 	ttf-liberation \
-	ttf-linux-libertine
+	ttf-mononoki-nerd \
+	noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
 
 # --- X KEYMAP LAYOUT
 setxkbmap br -option caps:escape_shifted_capslock
@@ -74,6 +74,7 @@ localectl set-x11-keymap br "" "" caps:escape_shifted_capslock
 
 # --- Enable Touchpad tapping
 xinput set-prop "PNP0C50:0b 093A:0255 Touchpad" "libinput Tapping Enabled" 1
+# https://wiki.archlinux.org/title/Libinput#Tapping_button_re-mapping
 ```
 
 ## The Environment
@@ -104,7 +105,7 @@ sxhkd
 wireguard-tools systemd-resolvco
 
 bash-completion
-docker docker-compose
+docker docker-buildx docker-compose
 entr
 fzf
 maim
@@ -166,6 +167,7 @@ People:
 Articles:
 
 - [ArchWiki; Xorg/Keyboard configuration](https://wiki.archlinux.org/title/Xorg/Keyboard_configuration)
+- [ArchWiki: libinput](https://wiki.archlinux.org/title/Libinput)
 - [ArchWiki: xinput](https://wiki.archlinux.org/title/Xinput)
 - [ArchWiki: dwm](https://wiki.archlinux.org/title/Dwm)
 - [ArchWiki: xinit](https://wiki.archlinux.org/title/Xinit)
