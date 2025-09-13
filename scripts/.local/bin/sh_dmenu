@@ -3,7 +3,6 @@
 cmd_blocks="
 #-DWM end
 startdwm-env end
-pkill dwm
 # END
 
 #-DWM-ENV reload

@@ -28,7 +28,6 @@ end() {
 		pkill -SIGTERM "$program" >/dev/null
 		printf '[END PROGRAM] [%s]\n' "$program" >> ~/.dwm.log
 	done
-	mv -f ~/.dwm.log ~/.dwm.log.old
 }
 
 case "$1" in
@@ -38,6 +37,8 @@ case "$1" in
 		;;
 	'end')
 		printf '\n[END DWM-ENV] [%s]\n' "$(date)" >> ~/.dwm.log
+		mv -f ~/.dwm.log ~/.dwm.log.old
+		pkill dwm
 		end
 		;;
 	'reload')
