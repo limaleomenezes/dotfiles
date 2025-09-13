@@ -7,9 +7,7 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
@@ -21,8 +19,6 @@ let mapleader = " "
 set mouse=a
 set hidden
 set autoread
-
-colo seoul256
 set background=dark
 
 set number
@@ -80,12 +76,7 @@ nnoremap <Leader>bL <Cmd>Lines<CR>
 nnoremap <Leader>fh <Cmd>Helptags<CR>
 
 " goyo.vim
-nnoremap <Leader>gl <Cmd>Goyo<CR>
-nnoremap <Leader>gg <Cmd>Goyo<CR><Cmd>Limelight!<CR>
-
-" limelight.vim
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+nnoremap <Leader>g <Cmd>Goyo<CR>
 
 " tmuxline.vim
 let g:tmuxline_powerline_separators = 0
