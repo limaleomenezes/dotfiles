@@ -16,10 +16,13 @@ call plug#end()
 
 let mapleader = " "
 
-set mouse=a
-set hidden
+colo lunaperche
+
 set autoread
+set hidden
 set background=dark
+set mouse=a
+set numberwidth=5
 set scrolloff=5
 
 set number
@@ -68,10 +71,6 @@ nnoremap <Leader>4 <Cmd>set scrolloff=999<CR>
 " Copy in visual mode to clipboard
 xnoremap <Leader>y "+y
 
-"
-" PLUGINS
-"
-
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -90,3 +89,16 @@ nnoremap <Leader>g <Cmd>Goyo<CR>
 " tmuxline.vim
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_preset = 'full'
+
+"
+" Autocmds
+"
+
+" Relative line numbers when entering Visual mode
+au ModeChanged [vV\x16]*:* let &l:rnu = mode() =~# '^[vV\x16]'
+au ModeChanged *:[vV\x16]* let &l:rnu = mode() =~# '^[vV\x16]'
+au WinEnter,WinLeave * let &l:rnu = mode() =~# '^[vV\x16]'
+
+" goyo.vim
+autocmd! User GoyoEnter set scrolloff=999
+autocmd! User GoyoLeave set scrolloff=5
