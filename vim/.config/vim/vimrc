@@ -20,6 +20,7 @@ set mouse=a
 set hidden
 set autoread
 set background=dark
+set scrolloff=5
 
 set number
 set splitbelow
@@ -49,19 +50,27 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-function! LeaderEsc()
-	" To detect the file type again
-	filetype detect
-	" To check changes by outside Vim
-	checktime
-	" To clear the last used search pattern
-	let @/ = ""
-endfunction
+"
+" KEYMAP
+"
 
-nnoremap <silent> <Leader><Esc> <Cmd>call LeaderEsc()<CR><Cmd>source $MYVIMRC<CR>
+" Clear the last used search pattern
+nnoremap <Leader>1 <Cmd>let @/ = ""<CR>
+" Detect the file type again
+nnoremap <Leader>2 <Cmd>filetype detect<CR>
+" Check changes made outside
+nnoremap <Leader>3 <Cmd>checktime<CR>
+" Source vimrc
+nnoremap <Leader>0 <Cmd>source $MYVIMRC<CR>
+" Cursor always in the middle
+nnoremap <Leader>4 <Cmd>set scrolloff=999<CR>
 
-" Copy system clipboard in visual mode
+" Copy in visual mode to clipboard
 xnoremap <Leader>y "+y
+
+"
+" PLUGINS
+"
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
