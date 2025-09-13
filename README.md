@@ -1,15 +1,15 @@
-# Leonardo Menezes's DOTFILES
+# Leonardo Menezes' DOTFILES
 
 The `install.sh` script uses `pacman` as package manager. If you plan to
 test this configuration setup in any Ubuntu or Fedora based distros
 replace the `CMD_INSTALL` variable.
 
 I am pretty comfortable using [Arch Linux](https://archlinux.org/). The
-ideia of my setup is to work around a bare bones distro. Just having the
-essential tools with sensible configuration I can work with precision.
+idea of my setup is to work around a bare-bones distro. Just having the
+essential tools with sensible configuration, I can work with precision.
 
 There is the **Automatic Setup** and the **Manual Setup**. Both requires
-a correct installation of your distro. For Arch the must-have
+a correct installation of your distro. For Arch, the must-have
 references:
 
 - [Installation guide](https://wiki.archlinux.org/title/Installation_guide)
@@ -23,7 +23,7 @@ As a general recommendation:
 - Install the packages:
 
 ```
-man-db man-pages git tmux vim
+sudo pacman -S man-db man-pages git tmux vim
 ```
 
 ---
