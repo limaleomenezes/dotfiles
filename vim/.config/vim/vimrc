@@ -88,7 +88,7 @@ nnoremap <Leader>g <Cmd>Goyo<CR>
 
 " tmuxline.vim
 let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = 'full'
+let g:tmuxline_preset = 'tmux'
 
 "
 " Autocmds
