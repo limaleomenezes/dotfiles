@@ -51,14 +51,16 @@ chmod +x ./install.sh \
 Now you have a bare-bones system installed. You need to setup X11
 environment, *the stage where the magic happens*. With the David Sadler
 instructions you will have a nice running desktop, a great start point!
+Then, with Luke Smith video will know you need later.
 
 - [Installing ST, DMENU and DWM in Arch Linux](https://davidtsadler.com/posts/arch/2020-08-17/installing-st-dmenu-dwm-in-arch-linux/)
+- [After a Minimal Linux Install: Graphical Envionment and Users](https://youtu.be/nSHOb8YU9Gw?feature=shared)
 
 Remember, the `~/.xinitrc` file is a script. A good practice is adding a
 shebang `!/bin/sh` and give execution permission `chmod +x`. About `dwm`
 usage, suckless.org website have all the basics, including how to patch.
 Then, choose some status monitor, I use
-[dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async)
+[dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async).
 
 - [suckless.org dwn tutorial](https://dwm.suckless.org/tutorial/)
 - [suckless.org Hacking](https://suckless.org/hacking/)
@@ -71,153 +73,21 @@ Patches recommendation:
 - [attachaside](https://dwm.suckless.org/patches/attachaside/)
 - [xrdb](https://dwm.suckless.org/patches/xrdb/)
 
----
+Something good to learn when using Arch is consult the **ArchWiki** what you
+have any doubt! Try the parameter `--help` or `-h` and read the *man
+page*.
 
+An usual thing to do is configure the keyboard layout and the touchpad
+device if applicable.
 
-
-> This part was not rewrote yet.
-
-Basic packages and command:
+- [Xorg/Keyboard configuration](https://wiki.archlinux.org/title/Xorg/Keyboard_configuration)
+- [libinput](https://wiki.archlinux.org/title/Libinput)
 
 ```
-# --- X LIB
-sudo pacman -S \
-	libx11 libxft libxinerama \
-	xorg-server xorg-xinit \
-	xterm
-
-# --- FONTS
-sudo pacman -S  \
-	terminus-font \
-	ttf-liberation \
-	ttf-mononoki-nerd \
-	noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
-
 # --- X KEYMAP LAYOUT
 setxkbmap br -option caps:escape_shifted_capslock
 localectl set-x11-keymap br "" "" caps:escape_shifted_capslock
 
 # --- Enable Touchpad tapping
 xinput set-prop "PNP0C50:0b 093A:0255 Touchpad" "libinput Tapping Enabled" 1
-# https://wiki.archlinux.org/title/Libinput#Tapping_button_re-mapping
 ```
-
-## The Environment
-
-### Packages
-
-```
-chromium
-firefox
-gvim
-htop
-lxappearance-gtk3 pop-gtk-theme pop-icon-theme deepin-icon-theme
-mpv
-nnn
-nsxiv xwallpaper
-pass
-pcmanfm-gtk3 xarchiver p7zip unrar unzip zip gvfs gvfs-
-zathura zathura-pdf-mupdf tesseract-data-eng tesseract-data-por tesseract-data-jpn
-
-alsa-utils
-brightnessctl
-dunst libnotify
-picom
-pipewire pipewire-audio pipewire-jack pipewire-alsa pipewire-pulse wireplumber
-polkit-gnome
-redshift
-sxhkd
-wireguard-tools systemd-resolvco
-
-bash-completion
-docker docker-buildx docker-compose
-entr
-fzf
-maim
-pkgfile
-ripgrep
-stow
-the_silver_searcher
-xclip xsel
-xdotool
-xorg-xinput
-xorg-xprop
-yt-dlp
-```
-
-### Usage recommendations
-
-- Use `firefox` as a clean browser and `chromium` as dirty one.
-- Use `vim`.
-- Use `nmtui` to connect to Wi-Fi networks.
-- Use `alsamixer` if you need control mixers.
-- Install [vim-plug](https://github.com/junegunn/vim-plug).
-- Install [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm).
-
-Complete the environment setup:
-
-```
-# --- Enable pipewire service
-systemctl --user enable pipewire
-systemctl --user enable pipewire-pulse
-
-# --- Enable resolved service
-systemctl enable systemd-resolved
-
-# --- Enable docker socket
-systemctl enable docker.socket
-
-# --- Update pkgfile database
-sudo pkgfile -u
-
-# --- Change permission of GnuPG homedir:
-chmod 600 ~/.gnupg/*
-chmod 700 ~/.gnupg
-
-# Add VPN server config /etc/wireguard/
-
-# Update MIME database
-update-mime-database ~/.local/share/mime
-```
-
-## References
-
-People:
-
-- [Luke Smith](https://lukesmith.xyz/)
-- [davidtsadler.com](https://davidtsadler.com/)
-- [juliu.is](https://juliu.is/)
-- [steinbaugh.com](https://steinbaugh.com/)
-
-Articles:
-
-- [ArchWiki; Xorg/Keyboard configuration](https://wiki.archlinux.org/title/Xorg/Keyboard_configuration)
-- [ArchWiki: libinput](https://wiki.archlinux.org/title/Libinput)
-- [ArchWiki: xinput](https://wiki.archlinux.org/title/Xinput)
-- [ArchWiki: dwm](https://wiki.archlinux.org/title/Dwm)
-- [ArchWiki: xinit](https://wiki.archlinux.org/title/Xinit)
-- [ArchWiki: Redshift](https://wiki.archlinux.org/title/Redshift)
-- [ArchWiki: Backlight](https://wiki.archlinux.org/title/Backlight)
-- [ArchWiki: Bash](https://wiki.archlinux.org/title/Bash)
-- [ArchWiki: pkgfile](https://wiki.archlinux.org/title/Pkgfile)
-- [ArchWiki: Readline](https://wiki.archlinux.org/title/Readline)
-- [ArchWiki: Conky](https://wiki.archlinux.org/title/Conky)
-- [ArchWiki: picom](https://wiki.archlinux.org/title/Picom)
-- [ArchWiki: sxhkd](https://wiki.archlinux.org/title/Sxhkd)
-- [ArchWiki: Advanced Linux Sound Architecture](https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture)
-- [ArchWiki: GnuPG](https://wiki.archlinux.org/title/GnuPG)
-- [ArchWiki: Dunst](https://wiki.archlinux.org/title/Dunst)
-- [ArchWiki: X resources](https://wiki.archlinux.org/title/X_resources)
-- [ArchWiki: WireGuard](https://wiki.archlinux.org/title/WireGuard)
-- [ArchWiki: pass](https://wiki.archlinux.org/title/Pass)
-- [ArchWiki: mpv](https://wiki.archlinux.org/title/Mpv)
-- [ArchWiki: yt-dlp](https://wiki.archlinux.org/title/Yt-dlp)
-- [ArchWiki: zathura](https://wiki.archlinux.org/title/Zathura)
-- [ArchWiki: MuPDF](https://wiki.archlinux.org/title/MuPDF)
-- [ArchWiki: sxiv](https://wiki.archlinux.org/title/Sxiv)
-- [ArchWiki: st](https://wiki.archlinux.org/title/St)
-- [ArchWiki: XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications)
-- [ArchWiki: XDG Base Directory](https://wiki.archlinux.org/title/XDG_Base_Directory)
-- [ArchWiki: Environment variables](https://wiki.archlinux.org/title/Environment_variables)
-- [ArchWiki: xbindkeys](https://wiki.archlinux.org/title/Xbindkeys)
-- [ArchWiki: Docker](https://wiki.archlinux.org/title/Docker)
