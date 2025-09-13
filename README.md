@@ -46,37 +46,36 @@ chmod +x ./install.sh \
 
 ---
 
+# Manual Setup
 
+Now you have a bare-bones system installed. You need to setup X11
+environment, *the stage where the magic happens*. With the David Sadler
+instructions you will have a nice running desktop, a great start point!
 
+- [Installing ST, DMENU and DWM in Arch Linux](https://davidtsadler.com/posts/arch/2020-08-17/installing-st-dmenu-dwm-in-arch-linux/)
 
+Remember, the `~/.xinitrc` file is a script. A good practice is adding a
+shebang `!/bin/sh` and give execution permission `chmod +x`. About `dwm`
+usage, suckless.org website have all the basics, including how to patch.
+Then, choose some status monitor, I use
+[dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async)
 
-## On Reboot
+- [suckless.org dwn tutorial](https://dwm.suckless.org/tutorial/)
+- [suckless.org Hacking](https://suckless.org/hacking/)
+- [suckless.org dwm status monitor](https://dwm.suckless.org/status_monitor/)
 
-Follow this articles to do not forget a bit while building dmenu, st and dwm.
-
-- [David T. Sadler's tutorial](https://davidtsadler.com/posts/arch/2020-08-17/installing-st-dmenu-dwm-in-arch-linux/)
-- [suckless.org's tutorial](https://dwm.suckless.org/tutorial/)
-
-Additionaly, install a status monitor. I use [dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async). To get an overview: [status monitor](https://dwm.suckless.org/status_monitor/).
-
-My dwm uses the patches below and apply a few sensible preferences. My dwm patch modifies `config.h`, so run `make` before patching at first time by yourself. To know how to [Hacking](https://suckless.org/hacking/).
+Patches recommendation:
 
 - [push up/down](https://dwm.suckless.org/patches/push/)
 - [fullgaps](https://dwm.suckless.org/patches/fullgaps/)
 - [attachaside](https://dwm.suckless.org/patches/attachaside/)
 - [xrdb](https://dwm.suckless.org/patches/xrdb/)
 
-My dwmblocks shows the stuff below.
+---
 
-- DO NOT DISTRUB
-- VPN
-- TIMEDATE
-- BRIGHTNESS
-- VOLUME
-- NETWORK
-- BATTERY
-- MEMORY
-- LOADAVG
+
+
+> This part was not rewrote yet.
 
 Basic packages and command:
 
