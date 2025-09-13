@@ -1,28 +1,54 @@
-# `limaleomenezes`'s DOTFILES
+# Leonardo Menezes's DOTFILES
 
-- [Mastering ´stow´ on Linux: A Comprehensive Guide](https://linuxvox.com/blog/stow-linux-nixcraftcom/)
+The `install.sh` script uses `pacman` as package manager. If you plan to
+test this configuration setup in any Ubuntu or Fedora based distros
+replace the `CMD_INSTALL` variable.
 
-## Arch Install
+I am pretty comfortable using [Arch Linux](https://archlinux.org/). The
+ideia of my setup is to work around a bare bones distro. Just having the
+essential tools with sensible configuration I can work with precision.
 
-Follow ArchWiki Installation Guide.
+There is the **Automatic Setup** and the **Manual Setup**. Both requires
+a correct installation of your distro. For Arch the must-have
+references:
 
 - [Installation guide](https://wiki.archlinux.org/title/Installation_guide)
 - [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot)
 - [General recommendations](https://wiki.archlinux.org/title/General_recommendations)
 
-Actions recommendaded:
+As a general recommendation:
 
-- When creating a user add to groups `video docker`.
-- When editing `visudo` add `Defaults !tty_tickets`.
-
-## arch-chroot
+- Add your User to groups: `video` and `docker`.
+- Add into `visudo`: `Defaults !tty_tickets`.
+- Install the packages:
 
 ```
-man-db man-pages
-git
-tmux
-vim
+man-db man-pages git tmux vim
 ```
+
+---
+
+# Automatic Setup
+
+Close this repository.
+
+```
+git clone https://github.com/limaleomenezes/dotfiles.git
+```
+
+Run the code below.
+
+```
+cd ./dotfiles \
+chmod +x ./install.sh \
+./install.sh all
+```
+
+---
+
+
+
+
 
 ## On Reboot
 

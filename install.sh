@@ -1,5 +1,6 @@
 #!/bin/sh
 
+CMD_INSTALL='sudo pacman -S'
 stow_repo='bash
 git
 gnupg
