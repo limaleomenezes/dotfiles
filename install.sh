@@ -146,6 +146,54 @@ stow_restow() {
 	done
 }
 
+make_patches() {
+	origin_pwd=$(pwd)
+
+	cd ~/.local/src/
+	git clone https://git.suckless.org/st
+	git clone https://git.suckless.org/dmenu
+	git clone https://git.suckless.org/dwm
+	git clone https://github.com/UtkarshVerma/dwmblocks-async
+
+	cd ./dwm/
+	make
+	patch -p1 < "$origin_pwd/"dwm-leomenezes-6.6.diff
+	sudo make clean install
+
+	cd ../dwmblocks-async/
+	make
+	patch -p1 < "$origin_pwd/"dwmblocks-leomenezes-6.6.diff
+	sudo make clean install
+
+	cd "$origin_pwd"
+}
+
+build_patch() {
+	origin_pwd=$(pwd)
+
+	cd ~/.local/src/
+
+	cd ./dwm/
+	make clean
+
+	cd ../dwmblocks-async/
+	make clean
+
+	cd ../
+	git clone https://git.suckless.org/dwm temp1/
+	git clone https://github.com/UtkarshVerma/dwmblocks-async temp2/
+
+	diff -up ./temp1 ./dwm > \
+		"$origin_pwd/dwm-leomenezes-6.6.diff"
+	diff -up ./temp2 ./dwmblocks-async > \
+		"$origin_pwd/dwmblocks-leomenezes-6.6.diff"
+
+	rm -rf ./temp1
+	rm -rf ./temp2
+
+	cd "$origin_pwd"
+}
+
 help() {
 	printf '
 SYNOPSIS:
@@ -158,6 +206,9 @@ OPTIONS:
 	--stow		Stow packages
 	--stow-delete	Unstow packages
 	--stow-restow	Restow packages
+	--build-patch	Patch:
+			* dwm
+			* dwmblocks
 	\n'
 }
 
@@ -171,6 +222,7 @@ case "$1" in
 		install_addons
 		stow_make_dirs
 		stow_stow
+		make_patches
 		;;
 	'--stow' )
 		stow_make_dirs
@@ -181,5 +233,8 @@ case "$1" in
 		;;
 	'--stow-delete' )
 		stow_restow
+		;;
+	'--build-patch' )
+		build_patch
 		;;
 esac
