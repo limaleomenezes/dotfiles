@@ -30,7 +30,7 @@ sudo pacman -S man-db man-pages git tmux vim
 
 # Automatic Setup
 
-Just run the commands below.
+Just run the commands below and reboot your system.
 
 ```
 git clone https://github.com/limaleomenezes/dotfiles.git \
