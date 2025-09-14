@@ -30,18 +30,13 @@ sudo pacman -S man-db man-pages git tmux vim
 
 # Automatic Setup
 
-Close this repository.
+Just run the commands below.
 
 ```
-git clone https://github.com/limaleomenezes/dotfiles.git
-```
-
-Run the code below.
-
-```
-cd ./dotfiles \
-chmod +x ./install.sh \
-./install.sh all
+git clone https://github.com/limaleomenezes/dotfiles.git \
+&& cd ./dotfiles \
+&& chmod +x ./install.sh \
+&& ./install.sh --setup
 ```
 
 ---
