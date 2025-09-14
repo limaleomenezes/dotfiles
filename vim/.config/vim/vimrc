@@ -1,22 +1,32 @@
+let g:mapleader = " "
+
+" -------------------------------------------------------------------------
+" PLUGINS
+" -------------------------------------------------------------------------
+
 call plug#begin()
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
-let mapleader = " "
+" -------------------------------------------------------------------------
+" SETTINGS
+" -------------------------------------------------------------------------
 
-colo lunaperche
+colo murphy
 
 set autoread
 set hidden
@@ -53,18 +63,22 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-"
+" -------------------------------------------------------------------------
 " KEYMAP
-"
+" -------------------------------------------------------------------------
 
 " Clear the last used search pattern
 nnoremap <Leader>1 <Cmd>let @/ = ""<CR>
+
 " Detect the file type again
 nnoremap <Leader>2 <Cmd>filetype detect<CR>
+
 " Check changes made outside
 nnoremap <Leader>3 <Cmd>checktime<CR>
+
 " Source vimrc
 nnoremap <Leader>0 <Cmd>source $MYVIMRC<CR>
+
 " Cursor always in the middle
 nnoremap <Leader>4 <Cmd>set scrolloff=999<CR>
 
@@ -90,9 +104,9 @@ nnoremap <Leader>g <Cmd>Goyo<CR>
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_preset = 'tmux'
 
-"
+" -------------------------------------------------------------------------
 " Autocmds
-"
+" -------------------------------------------------------------------------
 
 " Relative line numbers when entering Visual mode
 au ModeChanged [vV\x16]*:* let &l:rnu = mode() =~# '^[vV\x16]'
