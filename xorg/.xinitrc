@@ -4,7 +4,7 @@
 
 [ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
 
-xwallpaper --stretch /usr/share/backgrounds/archlinux/sunset.jpg
+# xwallpaper --stretch /usr/share/backgrounds/archlinux/sunset.jpg
 
 startdwm-env init
 
