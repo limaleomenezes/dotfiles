@@ -8,7 +8,7 @@ sxhkd'
 programs='chromium
 firefox'
 
-init() {
+env_init() {
 	printf '%s\n' "$services" | while IFS= read -r service; do
 		"$service" >/dev/null 2>&1 & disown
 	done
@@ -17,7 +17,7 @@ init() {
 	done
 }
 
-end() {
+env_kill() {
 	printf '%s\n' "$services" | while IFS= read -r service; do
 		pkill -9 "$service" >/dev/null
 	done
@@ -27,15 +27,22 @@ end() {
 }
 
 case "$1" in
-	'init')
-		init
+	--restart )
+		env_kill
+		env_init
 		;;
-	'end')
-		end
+	--logout )
+		env_kill
 		pkill dwm
 		;;
-	'reload')
-		end
-		init
+	--poweroff )
+		env_kill
+		systemctl poweroff
+		;;
+	--reboot )
+		env_kill
+		systemctl reboot
+	* )
+		env_init
 		;;
 esac

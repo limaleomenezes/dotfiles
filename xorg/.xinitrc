@@ -6,7 +6,6 @@
 
 # xwallpaper --stretch /usr/share/backgrounds/archlinux/sunset.jpg
 
-startdwm-env init
+startdwm-env >/dev/null 2>&1
 
-printf '[START STARTDWM]\n' >> ~/.dwm.log
 exec startdwm >/dev/null 2>&1

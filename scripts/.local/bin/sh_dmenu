@@ -1,26 +1,20 @@
 #!/bin/sh
 
 cmd_blocks="
-#-DWM end
-startdwm-env end
+#-DWM logout
+startdwm-env --logout
 # END
 
-#-DWM-ENV reload
-startdwm-env reload
+#-DWM-ENV restart
+startdwm-env --restart
 # END
 
 #-SYSTEM poweroff
-startdwm-env end
-systemctl poweroff
+startdwm-env --poweroff
 # END
 
 #-SYSTEM reboot
-startdwm-env end
-systemctl reboot
-# END
-
-#-SYSTEM sleep
-systemctl sleep
+startdwm-env --reboot
 # END
 
 #-DUNST close all
