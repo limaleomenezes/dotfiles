@@ -17,25 +17,25 @@ export XDG_STATE_HOME="$HOME/.local/state"
 #
 # History
 #
-
 export HISTCONTROL="erasedups:ignorespace"
 
 #
 # Aliases
 #
-
 alias ls='ls --color=auto'
+alias la='ls -ACF'
+alias ll='ls -AFl'
 alias grep='grep --color=auto'
+
 alias l='ls -CF'
 alias v='vim'
 
-alias la='ls -ACF'
-alias ll='ls -AFl'
+alias d='sudo docker'
+alias dc='sudo docker-compose'
 
 #
 # Troubleshooting
 #
-
 # Line wrap on window size
 shopt -s checkwinsize
 
@@ -88,4 +88,7 @@ n ()
     }
 }
 
+#
+# Prompt
+#
 PS1='[\u@\h \W]\$ '
