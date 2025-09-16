@@ -27,10 +27,6 @@ env_kill() {
 }
 
 case "$1" in
-	--restart )
-		env_kill
-		env_init
-		;;
 	--logout )
 		env_kill
 		pkill dwm
@@ -42,6 +38,11 @@ case "$1" in
 	--reboot )
 		env_kill
 		systemctl reboot
+		;;
+	--restart )
+		env_kill
+		env_init
+		;;
 	* )
 		env_init
 		;;
